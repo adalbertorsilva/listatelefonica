@@ -19,11 +19,7 @@ public class OperadoraService {
 	@GET
 	@Produces(UTF8MediaType.JSON)
 	public Response getOperadoras(){
-		return Response.ok()
-					   .header("Access-Control-Allow-Origin", "*")
-					   .header("Access-Control-Allow-Methods", "POST, GET, PUT, UPDATE, OPTIONS")
-					   .header("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With")
-					   .status(200).entity(operadoraDao.getOperadoras()).build();
+		return Response.ok().status(200).entity(operadoraDao.getOperadoras()).build();
 	}
 
 }

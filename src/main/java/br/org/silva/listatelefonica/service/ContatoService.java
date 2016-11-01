@@ -2,7 +2,6 @@ package br.org.silva.listatelefonica.service;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
-import javax.ws.rs.OPTIONS;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -25,14 +24,7 @@ public class ContatoService {
 	@GET
 	@Produces(UTF8MediaType.JSON)
 	public Response getContacts(){
-		
-	return	Response.ok()
-					.header("Access-Control-Allow-Origin", "*")
-					.header("Access-Control-Allow-Methods", "POST, GET, PUT, UPDATE, OPTIONS")
-					.header("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With")
-					.status(200).entity(contatoDao.getContacts()).build();
-					   
-		
+		return	Response.status(200).entity(contatoDao.getContacts()).build();
 	}
 	
 	@POST
@@ -41,11 +33,7 @@ public class ContatoService {
 	@Transactional
 	public Response save(Contato contato){
 		contatoDao.save(contato);
-		return Response.ok()
-				.header("Access-Control-Allow-Origin", "http://localhost:8080/listatelefonica/contatos")
-				.header("Access-Control-Allow-Methods", "POST, GET, PUT, UPDATE, OPTIONS")
-				.header("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With")
-				.status(200).entity("Operação realizaada com sucesso !").build();
+		return Response.ok().status(200).entity("Operação realizaada com sucesso !").build();
 	}
 
 }
